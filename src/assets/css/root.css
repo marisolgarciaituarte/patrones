@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+  --first-color: #1192EE;
+  --first-color-alt: #0E7ECD;
+
+  --light-color: #FFFFFF;
+
+  --dark-color: #2A3B47;
+  --dark-color-alt: #22303A;
+
+  --success-color: #2BD480;
+  --success-color-alt: #2EBD75;
+
+  --info-color: #66D1FF;
+  --info-color-alt: #4DBFEF;
+
+  --warning-color: #FFBA42;
+  --warning-color-alt: #FFA600;
+
+  --error-color: #EB5656;
+  --error-color-alt: #D84646;
+
+  --body-bg: #FBFBFE;
+  --text-color: #575E66;
+  --border-color: #EFF3F5;
+
+  --scrollbar-track-bg: #EEE;
+  --scrollbar-thumb-bg: #90A4AE;
+
+  --tablet-breakpoint: 415px;
+  --tablet-increase: 2px;
+  --tablet-decrease: 2px;
+  --desktop-breakpoint: 769px;
+  --desktop-increase: 4px;
+  --desktop-decrease: 4px;
+
+  --h1-font-size: 24px;
+  --h2-font-size: 20px;
+  --h3-font-size: 18px;
+  --normal-font-size: 16px;
+  --small-font-size: 14px;
+  --smaller-font-size: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+}
+
+html,
+body,
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--body-bg);
+}
+
+body,
+.scroll-y {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body::-webkit-scrollbar,
+.scroll-y::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 4px;
+}
+
+.scroll-x::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb,
+.scroll-y::-webkit-scrollbar-thumb,
+.scroll-x::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg);
+  border-radius: 4px;
+}
+
+.scroll-y-hover:hover::-webkit-scrollbar-track,
+.scroll-x-hover:hover::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track-bg);
+}
