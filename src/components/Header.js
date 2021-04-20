@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
+import AuthContext from '../auth/AuthContext';
+import { AUTH_LOGOUT } from '../auth/authActions';
 import iconArrowDown from '../assets/icons/arrow-down.png';
 
 const Header = () => {
+  const { authState, dispatch } = useContext(AuthContext);
   const [languageMenu, setLanguageMenu] = useState(false);
+
+  const handleLogout = () => {
+    dispatch({ type: AUTH_LOGOUT });
+  };
 
   return (
     <header className="d-flex flex-row justify-content-end align-items-center">
@@ -23,6 +30,11 @@ const Header = () => {
             <li className="m-bottom">English</li>
             <li>Français</li>
           </ul>
+        )}
+        {authState.user && (
+          <button onClick={handleLogout}>
+            Logout
+          </button>
         )}
       </div>
     </header>

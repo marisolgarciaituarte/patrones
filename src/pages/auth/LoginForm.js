@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+
+import AuthContext from '../../auth/AuthContext';
+import { AUTH_LOGIN } from '../../auth/authActions';
 
 const LoginForm = ({ goTo }) => {
+  const { dispatch } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit');
+    dispatch({
+      type: AUTH_LOGIN,
+      payload: {
+        email,
+      },
+    });
   };
 
   const handleGoToRegister = () => goTo('register');
@@ -21,6 +36,8 @@ const LoginForm = ({ goTo }) => {
         className="m-bottom"
         id="email"
         type="email"
+        value={email}
+        onChange={handleChangeEmail}
       />
       <label htmlFor="password">Password</label>
       <input
