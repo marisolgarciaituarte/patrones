@@ -1,3 +1,7 @@
+.success {
+  color: var(--success-color);
+}
+
 .error {
   color: var(--error-color);
 }
@@ -69,6 +73,7 @@
   position: absolute;
   top: var(--normal-font-size);
   right: var(--normal-font-size);
+  z-index: 201;
   margin-top: var(--normal-font-size);
   background-color: var(--light-color);
   border: 1px solid var(--border-color);
@@ -77,12 +82,34 @@
   padding: 32px;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+}
+
 .card {
   background-color: var(--light-color);
   border: 1px solid var(--border-color);
   border-radius: 4px;
   box-shadow: 0 0 8px var(--border-color);
   padding: 32px;
+  margin: 16px;
+}
+
+.alert {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 300;
+  background-color: var(--light-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 0 8px var(--border-color);
+  padding: 16px;
   margin: 16px;
 }
 

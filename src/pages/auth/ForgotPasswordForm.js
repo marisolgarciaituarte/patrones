@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { Alert, useAlertState } from '../../components/Alert';
 import Loader from '../../components/Loader';
 import { formSubmitBehavior } from '../../helpers/utils';
 import { recoverUser } from '../../helpers/firebase';
@@ -8,6 +9,10 @@ const ForgotPasswordForm = ({ goTo }) => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [alertState, setAlertState] = useAlertState({
+    type: '',
+    message: '',
+  });
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -17,9 +22,15 @@ const ForgotPasswordForm = ({ goTo }) => {
     formSubmitBehavior(event);
     setIsLoading(true);
     setErrorMessage('');
-    recoverUser(email)
+    const emailToRecover = email.trim();
+    recoverUser(emailToRecover)
       .then(() => {
+        setEmail('');
         setIsLoading(false);
+        setAlertState({
+          type: 'success',
+          message: `Se envió un correo a ${emailToRecover} con la recuperación de contraseña`,
+        });
       })
       .catch((error) => {
         setIsLoading(false);
@@ -34,6 +45,7 @@ const ForgotPasswordForm = ({ goTo }) => {
       className="card auth-card"
       onSubmit={handleSubmit}
     >
+      <Alert {...alertState} />
       <h3 className="text-center m-bottom">Recover password</h3>
       <label htmlFor="email">Email</label>
       <input
