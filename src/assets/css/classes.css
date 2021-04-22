@@ -1,3 +1,7 @@
+.error {
+  color: var(--error-color);
+}
+
 .md {
   font-size: var(--normal-font-size);
 }
@@ -80,4 +84,12 @@
   box-shadow: 0 0 8px var(--border-color);
   padding: 32px;
   margin: 16px;
+}
+
+.loader-circle svg path, .loader-line svg rect {
+  fill: var(--first-color);
+}
+
+.loader-circle.light svg path, .loader-line.light svg rect {
+  fill: var(--body-bg);
 }

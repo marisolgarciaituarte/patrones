@@ -1,23 +1,14 @@
-import React, { useReducer, useEffect } from 'react';
+import React from 'react';
 
+import useAuth from './helpers/useAuth';
+import AuthContext from './helpers/AuthContext';
 import AppRouter from './routers/AppRouter';
-import AuthContext from './auth/AuthContext';
-import authReducer from './auth/authReducer';
-import initAuthState from './auth/initAuthState';
-
-const init = () => {
-  return JSON.parse(localStorage.getItem('authState')) || initAuthState;
-};
 
 const App = () => {
-  const [authState, dispatch] = useReducer(authReducer, {}, init);
-
-  useEffect(() => {
-    localStorage.setItem('authState', JSON.stringify(authState));
-  }, [authState]);
+  const [userLoading, user] = useAuth();
 
   return (
-    <AuthContext.Provider value={{ authState, dispatch }}>
+    <AuthContext.Provider value={{ userLoading, user }}>
       <AppRouter />
     </AuthContext.Provider>
   );
