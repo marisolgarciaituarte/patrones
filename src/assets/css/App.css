@@ -9,7 +9,7 @@
 .panel-card {
   width: 80%;
   min-width: 320px;
-  max-width: 524px;
+  max-width: 624px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -18,7 +18,7 @@
 }
 
 .panel-card .options {
-  flex: 1;
+  flex: 1 0 100px;
   display: flex;
   flex-direction: column;
 }
@@ -27,6 +27,7 @@
   flex: 2;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .panel-card .preview .preview-card {
@@ -34,38 +35,15 @@
   margin: 0;
 }
 
-.panel-card .preview button {
+.panel-card .preview .buttons {
   align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
 }
 
-@media print {
-  * {
-    border: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
-  }
-
-  header {
-    display: none !important;
-  }
-
-  main {
-    display: block !important;
-  }
-
-  button {
-    display: none !important;
-  }
-
-  .options {
-    display: none !important;
-  }
-
-  .preview {
-    display: block !important;
-    width: 100vw;
-    height: 100vh;
-  }
+.icon {
+  width: var(--normal-font-size);
+  height: var(--normal-font-size);
 }

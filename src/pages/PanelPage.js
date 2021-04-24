@@ -35,6 +35,7 @@ const PanelPage = () => {
             Largo
           </label>
           <input
+            className="m-bottom"
             id="largo"
             type="number"
             value={largo}

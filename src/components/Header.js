@@ -22,7 +22,7 @@ const Header = () => {
       >
         <span className="p-right user-select-none cursor-pointer">Español</span>
         <img
-          className="m-right cursor-pointer"
+          className="icon m-right cursor-pointer"
           alt="arrow-down"
           src={iconArrowDown}
         />

@@ -1,52 +1,94 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import pdfMake from 'pdfmake/build/pdfmake';
 
-import { getRealNumber } from '../helpers/utils';
+import { getDrawingPDF, DrawingHTML } from './Drawing';
+import { getViews, getRealNumber } from '../helpers/utils';
+import iconArrowLeft from '../assets/icons/arrow-left.png';
+import iconArrowRight from '../assets/icons/arrow-right.png';
 
 const Preview = ({ largo, ancho }) => {
-  const svgWidth = 250;
-  const svgHeight = 250;
-  const largoReal = getRealNumber(largo);
-  const anchoReal = getRealNumber(ancho);
-  const x = svgWidth/2 - largoReal/2;
-  const y = svgWidth/2 - anchoReal/2;
+  const scale = 0.6;
+  const marginTop = 10;
+  const marginBottom = 10;
+  const marginLeft = 10;
+  const marginRight = 10;
+  const pageWidth = 612 - marginLeft - marginRight;
+  const pageHeight = 791 - marginTop - marginBottom;
+  const drawWidth = getRealNumber(largo);
+  const drawHeight = getRealNumber(ancho);
+  const [pages, setPages] = useState([]);
+  const [pageIndex, setPageIndex] = useState(0);
 
-  const handlePrint = () => {
+  const handleNext = () => {
+    setPageIndex((prevIndex) => {
+      const nextIndex = prevIndex + 1;
+      if (nextIndex < pages.length) {
+        return nextIndex;
+      }
+      return prevIndex;
+    });
+  };
+
+  const handleBack = () => {
+    setPageIndex((prevIndex) => {
+      const backIndex = prevIndex - 1;
+      if (backIndex >= 0) {
+        return backIndex;
+      }
+      return prevIndex;
+    });
+  };
+
+  const handleExportPDF = () => {
     const docDefinition = {
-      pageMargins: [0, 0, 0, 0],
-      content: [{
-        svg: `
-          <svg width="${svgWidth}" height="${svgHeight}">
-            <rect
-              x="${x}"
-              y="${y}"
-              width="${largoReal}"
-              height="${anchoReal}"
-              fill="transparent"
-              stroke="black"
-              strokeWidth="1"
-            />
-          </svg>
-        `,
-      }],
+      pageSize: 'LETTER',
+      pageMargins: [marginLeft, marginTop, marginRight, marginBottom],
+      content: getDrawingPDF({ drawWidth, drawHeight, pageWidth, pageHeight }).map((page) => {
+        return {
+          svg: page,
+        };
+      }),
     };
     pdfMake.createPdf(docDefinition).download();
   };
 
+  useEffect(() => {
+    setPageIndex(0);
+    setPages(getViews({ drawWidth, drawHeight, pageWidth, pageHeight, scale }));
+  }, [drawWidth, drawHeight, pageWidth, pageHeight]);
+
   return (
     <div className="preview">
-      <svg className="card preview-card p-0" width={svgWidth} height={svgHeight}>
-        <rect
-          x={x}
-          y={y}
-          width={largoReal}
-          height={anchoReal}
-          fill="transparent"
-          stroke="black"
-          strokeWidth="1"
-        />
-      </svg>
-      <button onClick={handlePrint}>Export PDF</button>
+      <DrawingHTML
+        marginTop={marginTop}
+        marginLeft={marginLeft}
+        marginRight={marginRight}
+        marginBottom={marginBottom}
+        pageWidth={pageWidth}
+        pageHeight={pageHeight}
+        drawWidth={drawWidth}
+        drawHeight={drawHeight}
+        view={pages[pageIndex]}
+        scale={scale}
+      />
+      <div className="buttons">
+        <button onClick={handleBack}>
+          <img
+            className="icon"
+            alt="arrow-left"
+            src={iconArrowLeft}
+          />
+        </button>
+        <p>{pageIndex + 1}</p>
+        <button onClick={handleNext}>
+          <img
+            className="icon"
+            alt="arrow-right"
+            src={iconArrowRight}
+          />
+        </button>
+        <button onClick={handleExportPDF}>Export PDF</button>
+      </div>
     </div>
   );
 };
