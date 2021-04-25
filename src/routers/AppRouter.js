@@ -8,7 +8,7 @@ import {
 import PublicRoute from '../routers/PublicRoute';
 import PrivateRoute from '../routers/PrivateRoute';
 import AuthContext from '../helpers/AuthContext';
-import AuthPage from '../pages/auth/AuthPage';
+import AuthPage from '../pages/AuthPage';
 import PanelPage from '../pages/PanelPage';
 import Header from '../components/Header';
 import LoadingWrapper from '../components/LoadingWrapper';

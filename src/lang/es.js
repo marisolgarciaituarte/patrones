@@ -5,9 +5,9 @@
   03. PanelPage
 */
 
-const en = {
+const es = {
   /* 01. Header */
-  'header-logout': 'Logout',
+  'header-logout': 'Cerrar sesión',
 
   /* 02. AuthPage */
   // Login Form
@@ -27,4 +27,4 @@ const en = {
 
 };
 
-export default en;
+export default es;

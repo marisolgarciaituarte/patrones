@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import { Dropdown, DropdownItem } from './Dropdown';
+import IntlMessage from './IntlMessage';
 import AuthContext from '../helpers/AuthContext';
 import iconArrowDown from '../assets/icons/arrow-down.png';
 
@@ -43,7 +44,7 @@ const Header = () => {
           className="m-0 m-right"
           onClick={handleLogout}
         >
-          Logout
+          <IntlMessage id="header-logout" />
         </button>
       )}
     </header>
