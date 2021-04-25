@@ -1,1 +1,3 @@
 # patrones
+
+patrones pdf
