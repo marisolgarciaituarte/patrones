@@ -25,7 +25,7 @@ export const getDrawingPDF = ({
           height="${drawHeight}"
           fill="transparent"
           stroke="black"
-          strokeWidth="1"
+          stroke-width="1"
         />
       </svg>
     `);
@@ -61,8 +61,9 @@ export const DrawingHTML = ({
     <rect
       x="0"
       y="0"
-      width={drawWidth * scale}
-      height={drawHeight * scale}
+      width={drawWidth}
+      height={drawHeight}
+      transform={`scale(${scale})`}
       fill="transparent"
       stroke="black"
       strokeWidth="1"
