@@ -10,6 +10,7 @@ const fr = {
   'en': 'English',
   'es': 'Español',
   'fr': 'Français',
+  'header-login': 'Se connecter',
   'header-logout': 'Se déconnecter',
 
   /* 02. AuthPage */

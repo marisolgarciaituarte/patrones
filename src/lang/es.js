@@ -10,6 +10,7 @@ const es = {
   'en': 'English',
   'es': 'Español',
   'fr': 'Français',
+  'header-login': 'Iniciar sesión',
   'header-logout': 'Cerrar sesión',
 
   /* 02. AuthPage */
