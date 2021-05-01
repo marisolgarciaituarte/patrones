@@ -8,11 +8,11 @@ import AppRouter from './routers/AppRouter';
 
 const App = () => {
   const [userLoading, user] = useAuth();
-  const [langLoading, lang] = useLang();
+  const [lang, dispatch] = useLang();
 
   return (
     <AuthContext.Provider value={{ userLoading, user }}>
-      <LangContext.Provider value={{ langLoading, lang }}>
+      <LangContext.Provider value={{ lang, dispatch }}>
         <AppRouter />
       </LangContext.Provider>
     </AuthContext.Provider>

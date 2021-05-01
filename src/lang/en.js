@@ -7,6 +7,9 @@
 
 const en = {
   /* 01. Header */
+  'en': 'English',
+  'es': 'Español',
+  'fr': 'Français',
   'header-logout': 'Logout',
 
   /* 02. AuthPage */
