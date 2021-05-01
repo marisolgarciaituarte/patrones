@@ -69,6 +69,13 @@
   height: 100%;
 }
 
+.main-container {
+  width: 100vw;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .dropdown {
   position: absolute;
   top: var(--normal-font-size);
