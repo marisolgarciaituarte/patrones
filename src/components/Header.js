@@ -59,32 +59,34 @@ const Header = () => {
   };
 
   return (
-    <header className="d-flex flex-row justify-content-end align-items-center">
-      <div
-        className="position-relative d-flex flex-row align-items-center"
-        onClick={() => setLanguageMenu(!languageMenu)}
-      >
-        <span className="p-right user-select-none cursor-pointer">
-          <IntlMessage id={lang} />
-        </span>
-        <img
-          className="icon m-right cursor-pointer"
-          alt="arrow-down"
-          src={iconArrowDown}
-        />
-        <Dropdown isOpen={languageMenu} handleClose={() => setLanguageMenu(false)}>
-          {languagesArray.map((language) => (
-            <DropdownItem
-              key={language}
-              className="cursor-pointer m-bottom"
-              onClick={() => handleSelectLanguage(language)}
-            >
-              <IntlMessage id={language} />
-            </DropdownItem>
-          ))}
-        </Dropdown>
+    <header className="d-flex flex-row align-items-center">
+      <div className="main-container d-flex flex-row justify-content-end align-items-center">
+        <div
+          className="position-relative d-flex flex-row align-items-center"
+          onClick={() => setLanguageMenu(!languageMenu)}
+        >
+          <span className="p-right user-select-none cursor-pointer">
+            <IntlMessage id={lang} />
+          </span>
+          <img
+            className="icon m-right cursor-pointer"
+            alt="arrow-down"
+            src={iconArrowDown}
+          />
+          <Dropdown isOpen={languageMenu} handleClose={() => setLanguageMenu(false)}>
+            {languagesArray.map((language) => (
+              <DropdownItem
+                key={language}
+                className="cursor-pointer m-bottom"
+                onClick={() => handleSelectLanguage(language)}
+              >
+                <IntlMessage id={language} />
+              </DropdownItem>
+            ))}
+          </Dropdown>
+        </div>
+        {renderAuthButton()}
       </div>
-      {renderAuthButton()}
     </header>
   );
 };
