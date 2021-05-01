@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import pdfMake from 'pdfmake/build/pdfmake';
 
+import { Alert, useAlertState } from './Alert';
 import { getDrawingPDF, DrawingHTML } from './Drawing';
 import { getViews, getRealNumber } from '../helpers/utils';
+import AuthContext from '../helpers/AuthContext';
 import iconArrowLeft from '../assets/icons/arrow-left.png';
 import iconArrowRight from '../assets/icons/arrow-right.png';
 
 const Preview = ({ largo, ancho }) => {
+  const { user } = useContext(AuthContext);
   const scale = 0.6;
   const marginTop = 10;
   const marginBottom = 10;
@@ -18,6 +21,10 @@ const Preview = ({ largo, ancho }) => {
   const drawHeight = getRealNumber(ancho);
   const [pages, setPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
+  const [alertState, setAlertState] = useAlertState({
+    type: '',
+    message: '',
+  });
 
   const handleNext = () => {
     setPageIndex((prevIndex) => {
@@ -40,16 +47,23 @@ const Preview = ({ largo, ancho }) => {
   };
 
   const handleExportPDF = () => {
-    const docDefinition = {
-      pageSize: 'A4',
-      pageMargins: [marginLeft, marginTop, marginRight, marginBottom],
-      content: getDrawingPDF({ drawWidth, drawHeight, pageWidth, pageHeight }).map((page) => {
-        return {
-          svg: page,
-        };
-      }),
-    };
-    pdfMake.createPdf(docDefinition).download();
+    if (!user) {
+      setAlertState({
+        type: 'error',
+        message: 'Primero inicia sesión',
+      });
+    } else {
+      const docDefinition = {
+        pageSize: 'A4',
+        pageMargins: [marginLeft, marginTop, marginRight, marginBottom],
+        content: getDrawingPDF({ drawWidth, drawHeight, pageWidth, pageHeight }).map((page) => {
+          return {
+            svg: page,
+          };
+        }),
+      };
+      pdfMake.createPdf(docDefinition).download();
+    }
   };
 
   useEffect(() => {
@@ -59,6 +73,7 @@ const Preview = ({ largo, ancho }) => {
 
   return (
     <div className="preview">
+      <Alert {...alertState} />
       <DrawingHTML
         marginTop={marginTop}
         marginLeft={marginLeft}
