@@ -12,8 +12,8 @@ const Preview = ({ largo, ancho }) => {
   const marginBottom = 10;
   const marginLeft = 10;
   const marginRight = 10;
-  const pageWidth = 612 - marginLeft - marginRight;
-  const pageHeight = 791 - marginTop - marginBottom;
+  const pageWidth = 595 - marginLeft - marginRight;
+  const pageHeight = 842 - marginTop - marginBottom;
   const drawWidth = getRealNumber(largo);
   const drawHeight = getRealNumber(ancho);
   const [pages, setPages] = useState([]);
@@ -41,7 +41,7 @@ const Preview = ({ largo, ancho }) => {
 
   const handleExportPDF = () => {
     const docDefinition = {
-      pageSize: 'LETTER',
+      pageSize: 'A4',
       pageMargins: [marginLeft, marginTop, marginRight, marginBottom],
       content: getDrawingPDF({ drawWidth, drawHeight, pageWidth, pageHeight }).map((page) => {
         return {
