@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Preview from '../components/Preview';
-import { formSubmitBehavior, getTextNumber } from '../helpers/utils';
+import Preview from '../../components/Preview';
+import { formSubmitBehavior, getTextNumber } from '../../helpers/utils';
 
 const PanelPage = () => {
   const [largo, setLargo] = useState(200);
