@@ -7,13 +7,8 @@ const ImagesPreview = ({
   const [selectedImage, setSelectedImage] = useState(0);
 
   return (
-    <aside
-      className="d-flex flex-row align-items-start justify-content-center gap p"
-      style={{
-        flex: '1 1 520px',
-      }}
-    >
-      <div className="d-flex flex-column gap">
+    <aside className="images">
+      <div className="list-images">
         {sources.map((source, index) => (
           <img
             key={source}
@@ -31,7 +26,7 @@ const ImagesPreview = ({
           />
         ))}
       </div>
-      <div className="d-flex flex-row justify-content-center align-items-center">
+      <div className="selected-image">
         <ReactImageMagnify
           smallImage={{
             alt: sources[selectedImage],

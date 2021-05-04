@@ -6,6 +6,20 @@
   flex-direction: column;
 }
 
+aside.images {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--normal-font-size);
+  margin: var(--normal-font-size);
+}
+
+aside.images .list-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--normal-font-size);
+}
+
 .panel-card .controls {
   display: flex;
   flex-direction: row;
@@ -45,4 +59,29 @@
 .icon {
   width: var(--normal-font-size);
   height: var(--normal-font-size);
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .panel-card {
+    flex: 1;
+  }
+
+  aside.images {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: var(--normal-font-size);
+  }
+  
+  aside.images .list-images {
+    display: flex;
+    flex-direction: column;
+    gap: var(--normal-font-size);
+  }
+  
+  aside.images .selected-image {
+    max-width: 392px;
+    max-height: 392px;
+  }
 }

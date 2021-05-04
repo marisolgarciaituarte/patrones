@@ -37,9 +37,6 @@ const Patron1Page = () => {
       <form
         className="card panel-card"
         onSubmit={handleSubmit}
-        style={{
-          flex: '1 1 728px',
-        }}
       >
         <h3>Lorem ipsum.</h3>
         <p>Lorem ipsum dolor sit.</p>
