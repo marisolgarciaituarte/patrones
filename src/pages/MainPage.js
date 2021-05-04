@@ -19,8 +19,10 @@ const MainPage = () => {
               alt="patron-1"
               src="https://source.unsplash.com/300x300/?clothing"
               style={{
-                width: 300,
-                height: 300,
+                width: '100%',
+                height: '100%',
+                maxWidth: 300,
+                maxHeight: 300,
               }}
             />
             <p>Patron 1</p>
@@ -32,8 +34,10 @@ const MainPage = () => {
               alt="patron-2"
               src="https://source.unsplash.com/300x300/?clothes"
               style={{
-                width: 300,
-                height: 300,
+                width: '100%',
+                height: '100%',
+                maxWidth: 300,
+                maxHeight: 300,
               }}
             />
             <p>Patron 2</p>
@@ -45,8 +49,10 @@ const MainPage = () => {
               alt="patron-3"
               src="https://source.unsplash.com/300x300/?clothe"
               style={{
-                width: 300,
-                height: 300,
+                width: '100%',
+                height: '100%',
+                maxWidth: 300,
+                maxHeight: 300,
               }}
             />
             <p>Patron 3</p>
