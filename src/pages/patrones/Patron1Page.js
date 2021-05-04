@@ -29,9 +29,9 @@ const Patron1Page = () => {
     <main className="main-container d-flex flex-row flex-wrap justify-content-center">
       <ImagesPreview
         sources={[
-          'https://source.unsplash.com/300x300/?clothing',
-          'https://source.unsplash.com/300x300/?clothes',
-          'https://source.unsplash.com/300x300/?clothe',
+          'https://source.unsplash.com/800x800/?clothing',
+          'https://source.unsplash.com/800x800/?clothes',
+          'https://source.unsplash.com/800x800/?clothe',
         ]}
       />
       <form
