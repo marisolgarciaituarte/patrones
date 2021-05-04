@@ -8,7 +8,7 @@ import AuthContext from '../helpers/AuthContext';
 import iconArrowLeft from '../assets/icons/arrow-left.png';
 import iconArrowRight from '../assets/icons/arrow-right.png';
 
-const Preview = ({ largo, ancho }) => {
+const Preview = ({ largo, ancho, opcion }) => {
   const { user } = useContext(AuthContext);
   const scale = 0.6;
   const marginTop = 10;
@@ -17,8 +17,8 @@ const Preview = ({ largo, ancho }) => {
   const marginRight = 10;
   const pageWidth = 595 - marginLeft - marginRight;
   const pageHeight = 842 - marginTop - marginBottom;
-  const drawWidth = getRealNumber(largo);
-  const drawHeight = getRealNumber(ancho);
+  const drawWidth = opcion === "1" ? getRealNumber(largo) : getRealNumber(largo)*2;
+  const drawHeight = opcion === "1" ? getRealNumber(ancho) : getRealNumber(ancho)*2;
   const [pages, setPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
   const [alertState, setAlertState] = useAlertState({

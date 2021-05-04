@@ -7,9 +7,11 @@ import { formSubmitBehavior, getTextNumber } from '../../helpers/utils';
 const Patron1Page = () => {
   const [largo, setLargo] = useState(200);
   const [ancho, setAncho] = useState(200);
+  const [opcion, setOpcion] = useState("1");
   const [previewState, setPreviewState] = useState({
     largo,
     ancho,
+    opcion,
   });
 
   const handleChangeLargo = (event) => {
@@ -20,13 +22,17 @@ const Patron1Page = () => {
     setAncho(getTextNumber(event.target.value));
   };
 
+  const handleChangeOpcion = (event) => {
+    setOpcion(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     formSubmitBehavior(event);
-    setPreviewState({ largo, ancho });
+    setPreviewState({ largo, ancho, opcion });
   };
 
   return (
-    <main className="main-container d-flex flex-row flex-wrap justify-content-center">
+    <main className="main-container d-flex flex-wrap justify-content-center">
       <ImagesPreview
         sources={[
           'https://source.unsplash.com/800x800/?clothing',
@@ -42,23 +48,94 @@ const Patron1Page = () => {
         <p>Lorem ipsum dolor sit.</p>
         <div className="controls">
           <div className="options">
-            <label htmlFor="largo">
-              Largo
-            </label>
-            <input
-              className="m-bottom"
-              id="largo"
-              type="number"
-              value={largo}
-              onChange={handleChangeLargo}
-            />
-            <label htmlFor="ancho">Ancho</label>
-            <input
-              id="ancho"
-              type="number"
-              value={ancho}
-              onChange={handleChangeAncho}
-            />
+            <label className="m-bottom">Ingresa medidas:</label>
+            <div className="d-flex align-items-center">
+              <img
+                alt="largo"
+                src="https://www.mapeihome.com/uploads/images/area-of-wall.png"
+                style={{
+                  width: 100,
+                  height: 100,
+                  objectFit: 'contain',
+                }}
+              />
+              <div>
+                <label htmlFor="largo">
+                  Largo
+                </label>
+                <input
+                  className="m-bottom"
+                  id="largo"
+                  type="number"
+                  value={largo}
+                  onChange={handleChangeLargo}
+                />
+              </div>
+            </div>
+            <div className="d-flex align-items-center">
+              <img
+                alt="ancho"
+                src="https://www.mapeihome.com/uploads/images/area-of-wall.png"
+                style={{
+                  width: 100,
+                  height: 100,
+                  objectFit: 'contain',
+                }}
+              />
+              <div>
+                <label htmlFor="ancho">Ancho</label>
+                <input
+                  id="ancho"
+                  type="number"
+                  value={ancho}
+                  onChange={handleChangeAncho}
+                />
+              </div>
+            </div>
+            <div className="d-flex flex-column gap m-top m-bottom">
+              <div className="d-flex align-items-center">
+                <input
+                  className="m-0"
+                  id="option-1"
+                  type="radio"
+                  name="option"
+                  value="1"
+                  checked={opcion === "1"}
+                  onChange={handleChangeOpcion}
+                  style={{
+                    maxWidth: 32,
+                    maxHeight: 32,
+                  }}
+                />
+                <label
+                  className="user-select-none"
+                  htmlFor="option-1"
+                >
+                  Opcion 1
+                </label>
+              </div>
+              <div className="d-flex align-items-center">
+                <input
+                  className="m-0"
+                  id="option-2"
+                  type="radio"
+                  name="option"
+                  value="2"
+                  checked={opcion === "2"}
+                  onChange={handleChangeOpcion}
+                  style={{
+                    maxWidth: 32,
+                    maxHeight: 32,
+                  }}
+                />
+                <label
+                  className="user-select-none"
+                  htmlFor="option-2"
+                >
+                  Opcion 2
+                </label>
+              </div>
+            </div>
             <button type="submit">
               Go
             </button>

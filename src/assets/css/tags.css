@@ -40,6 +40,16 @@ input:focus {
   box-shadow: 0 0 2px var(--first-color);
 }
 
+input[type="radio"] {
+  border: 0;
+  box-shadow: none;
+}
+
+input[type="radio"]:focus {
+  border: 0;
+  box-shadow: none;
+}
+
 button {
   outline: none;
   cursor: pointer;
