@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import pdfMake from 'pdfmake/build/pdfmake';
 
-import { Alert, useAlertState } from './Alert';
+import { Alert, useAlertState } from '../../../components/Alert';
 import { getDrawingPDF, DrawingHTML } from './Drawing';
-import { getViews, getRealNumber } from '../helpers/utils';
-import AuthContext from '../helpers/AuthContext';
-import iconArrowLeft from '../assets/icons/arrow-left.png';
-import iconArrowRight from '../assets/icons/arrow-right.png';
+import { getViews, getRealNumber } from '../../../helpers/utils';
+import AuthContext from '../../../helpers/AuthContext';
+import iconArrowLeft from '../../../assets/icons/arrow-left.png';
+import iconArrowRight from '../../../assets/icons/arrow-right.png';
 
 const Preview = ({ largo, ancho, opcion }) => {
   const { user } = useContext(AuthContext);

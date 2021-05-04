@@ -1,4 +1,4 @@
-import { getViews } from '../helpers/utils';
+import { getViews } from '../../../helpers/utils';
 
 export const getDrawingPDF = ({
   drawWidth,

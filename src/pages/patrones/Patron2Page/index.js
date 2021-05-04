@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import ImagesPreview from '../../components/ImagesPreview';
-import Preview from '../../components/Preview';
-import { formSubmitBehavior, getTextNumber } from '../../helpers/utils';
+import ImagesPreview from '../../../components/ImagesPreview';
+import Preview from './Preview';
+import { formSubmitBehavior, getTextNumber } from '../../../helpers/utils';
 
-const Patron1Page = () => {
+const Patron2Page = () => {
   const [largo, setLargo] = useState(200);
   const [ancho, setAncho] = useState(200);
   const [opcion, setOpcion] = useState("1");
@@ -148,4 +148,4 @@ const Patron1Page = () => {
   );
 };
 
-export default Patron1Page;
+export default Patron2Page;
