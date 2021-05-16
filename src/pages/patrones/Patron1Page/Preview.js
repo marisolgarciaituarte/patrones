@@ -3,22 +3,23 @@ import pdfMake from 'pdfmake/build/pdfmake';
 
 import { Alert, useAlertState } from '../../../components/Alert';
 import { getDrawingPDF, DrawingHTML } from './Drawing';
-import { getViews, getRealNumber } from '../../../helpers/utils';
+import { getSizeFormat, getViews, getRealNumber } from '../../../helpers/utils';
 import AuthContext from '../../../helpers/AuthContext';
 import iconArrowLeft from '../../../assets/icons/arrow-left.png';
 import iconArrowRight from '../../../assets/icons/arrow-right.png';
 
 const Preview = ({ largo, ancho, opcion }) => {
   const { user } = useContext(AuthContext);
-  const scale = 0.6;
+  const scale = opcion === 'A0' ? 0.2 : 0.6;
   const marginTop = 10;
   const marginBottom = 10;
   const marginLeft = 10;
   const marginRight = 10;
-  const pageWidth = 595 - marginLeft - marginRight;
-  const pageHeight = 842 - marginTop - marginBottom;
-  const drawWidth = opcion === "1" ? getRealNumber(largo) : getRealNumber(largo)*2;
-  const drawHeight = opcion === "1" ? getRealNumber(ancho) : getRealNumber(ancho)*2;
+  const pageSize = getSizeFormat(opcion);
+  const pageWidth = pageSize[0] - marginLeft - marginRight;
+  const pageHeight = pageSize[1] - marginTop - marginBottom;
+  const drawWidth = getRealNumber(largo);
+  const drawHeight = getRealNumber(ancho);
   const [pages, setPages] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
   const [alertState, setAlertState] = useAlertState({
@@ -54,7 +55,7 @@ const Preview = ({ largo, ancho, opcion }) => {
       });
     } else {
       const docDefinition = {
-        pageSize: 'A4',
+        pageSize: opcion,
         pageMargins: [marginLeft, marginTop, marginRight, marginBottom],
         content: getDrawingPDF({ drawWidth, drawHeight, pageWidth, pageHeight }).map((page) => {
           return {
@@ -78,7 +79,7 @@ const Preview = ({ largo, ancho, opcion }) => {
     setPageIndex(0);
     const [views] = getViews({ drawWidth, drawHeight, pageWidth, pageHeight, scale });
     setPages(views);
-  }, [drawWidth, drawHeight, pageWidth, pageHeight]);
+  }, [drawWidth, drawHeight, pageWidth, pageHeight, scale]);
 
   return (
     <div className="preview">

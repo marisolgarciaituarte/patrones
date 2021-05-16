@@ -7,7 +7,7 @@ import { formSubmitBehavior, getTextNumber } from '../../../helpers/utils';
 const Patron1Page = () => {
   const [largo, setLargo] = useState(200);
   const [ancho, setAncho] = useState(200);
-  const [opcion, setOpcion] = useState("1");
+  const [opcion, setOpcion] = useState('LETTER');
   const [previewState, setPreviewState] = useState({
     largo,
     ancho,
@@ -15,20 +15,25 @@ const Patron1Page = () => {
   });
 
   const handleChangeLargo = (event) => {
-    setLargo(getTextNumber(event.target.value));
+    const newLargo = getTextNumber(event.target.value);
+    setLargo(newLargo);
+    setPreviewState({ largo: newLargo, ancho, opcion });
   };
 
   const handleChangeAncho = (event) => {
-    setAncho(getTextNumber(event.target.value));
+    const newAncho = getTextNumber(event.target.value);
+    setAncho(newAncho);
+    setPreviewState({ largo, ancho: newAncho, opcion });
   };
 
   const handleChangeOpcion = (event) => {
-    setOpcion(event.target.value);
+    const newOpcion = event.target.value;
+    setOpcion(newOpcion);
+    setPreviewState({ largo, ancho, opcion: newOpcion });
   };
 
   const handleSubmit = (event) => {
     formSubmitBehavior(event);
-    setPreviewState({ largo, ancho, opcion });
   };
 
   return (
@@ -99,8 +104,8 @@ const Patron1Page = () => {
                   id="option-1"
                   type="radio"
                   name="option"
-                  value="1"
-                  checked={opcion === "1"}
+                  value="LETTER"
+                  checked={opcion === 'LETTER'}
                   onChange={handleChangeOpcion}
                   style={{
                     maxWidth: 32,
@@ -111,7 +116,7 @@ const Patron1Page = () => {
                   className="user-select-none"
                   htmlFor="option-1"
                 >
-                  Opcion 1
+                  Tamaño carta
                 </label>
               </div>
               <div className="d-flex align-items-center">
@@ -120,8 +125,8 @@ const Patron1Page = () => {
                   id="option-2"
                   type="radio"
                   name="option"
-                  value="2"
-                  checked={opcion === "2"}
+                  value="A4"
+                  checked={opcion === 'A4'}
                   onChange={handleChangeOpcion}
                   style={{
                     maxWidth: 32,
@@ -132,13 +137,31 @@ const Patron1Page = () => {
                   className="user-select-none"
                   htmlFor="option-2"
                 >
-                  Opcion 2
+                  Tamaño A4
+                </label>
+              </div>
+              <div className="d-flex align-items-center">
+                <input
+                  className="m-0"
+                  id="option-3"
+                  type="radio"
+                  name="option"
+                  value="A0"
+                  checked={opcion === 'A0'}
+                  onChange={handleChangeOpcion}
+                  style={{
+                    maxWidth: 32,
+                    maxHeight: 32,
+                  }}
+                />
+                <label
+                  className="user-select-none"
+                  htmlFor="option-3"
+                >
+                  Tamaño A0
                 </label>
               </div>
             </div>
-            <button type="submit">
-              Go
-            </button>
           </div>
           <Preview {...previewState} />
         </div>

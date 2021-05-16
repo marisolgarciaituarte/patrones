@@ -1,3 +1,16 @@
+export const getSizeFormat = (format) => {
+  switch(format) {
+    case 'LETTER':
+      return [612, 791];
+    case 'A4':
+      return [595, 842];
+    case 'A0':
+      return [2384, 3370];
+    default:
+      return [612, 791];
+  }
+};
+
 export const getViews = ({
   drawWidth,
   drawHeight,
